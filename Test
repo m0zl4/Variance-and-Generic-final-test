@@ -1,0 +1,119 @@
+/*-Soal 1 & 2-
+
+    class Test
+    fun percobaan
+
+    class PanggilTest
+
+    class PanggilSemua extend Test
+
+    class ProofConstraint
+
+    -Pertanyaan-
+    1. Jadikanlah pseudocode berikut ke bentuk generic kotlin
+    2. Jadikanlah class ProofConstarin mensubstitue seluruh kelas diatasnya dengan cara Constraint
+
+    -Soal 3 & 4-
+
+    class ProofCovariant
+
+    class ProofContravariant
+
+    -Pertanyaan-
+    3. Buatlah kelas baru bernama apapun yang memiliki fungsi cetak, lalu extend dari kelas ProofCovariant
+    Catatan : ProofCovariant memiliki sifat Covariant, jadi harap diperhatikan pengimplementasiannya
+    4. Buatlah kelas baru bernama apapun yang memiliki fungsi pengembalian nilai(return), lalu extend dari kelas ProofContravariant
+    Catatan : ProofContravariant memiliki sifat Contravariant, jadi harap diperhatikan pengimplementasiannya
+    5. Buatlah baris kode yang bisa menjelaskan pembandingan antara invariance dengan generic(mana saja kelas atau fungsi)
+    Catatan : silahkan gunakan baris komentar untuk mendeskripsikan kodingan anda*/
+
+//no 1
+    /*fun main(args: Array<String>) {
+        var test = panggilTest<String>("String")
+        var test2 = panggilTest<Double>(10.00)
+        println(test)
+        println(test2)
+    }
+    class panggilTest<out T>(input:T) {
+        init {
+            println("Bagian ini Memanggil Nilai dari $input")
+        }
+    }*/
+
+//no 2
+/*interface CantAnswer {
+    fun sayHello(name: String)
+}
+
+open class proofConstarin
+
+class Manager : proofConstarin()
+
+class HardAnswer : proofConstarin(), CantAnswer {
+    override fun sayHello(name: String) {
+        println("Hello can $name, help answer number 2")
+    }
+}
+
+class Company<T>(val proofConstarin: T) where T : proofConstarin, T : CantAnswer
+
+fun main() {
+    val data = Company(HardAnswer())
+}*/
+
+//no 3
+/*class ProofCovariant<out T>(val data: T) {
+
+    fun data(): T {
+        return data
+    }
+}
+
+fun main() {
+    val covariantString = ProofCovariant<String>("Adit")
+    val covariantAny: ProofCovariant<Any> = covariantString
+
+    println(covariantAny.data())
+}*/
+
+//no 4
+/*class ProofContravariant<in T>{
+    fun sayHello(name: T){
+        println("Hallo $name")
+    }
+
+}
+
+fun main() {
+    val contravariantAny = ProofContravariant<Any>()
+    val contravariantString: ProofContravariant<String> = contravariantAny
+
+    contravariantString.sayHello("Edi")
+}*/
+
+//no 5
+
+//Invariant
+/*class Invariant<T>(var data: T)
+fun main() {
+    val invariantString = Invariant("String")
+
+    // val invariantAny: Invariant<Any> = invariantString // bisa
+    // invariantAny.data = 100  // bahaya
+}
+
+//Generic
+fun main(args: Array<String>) {
+    var test = panggilTest<String>("String")
+    var test2 = panggilTest<Double>(10.00)
+    println(test)
+    println(test2)
+}
+
+class panggilTest<out T>(input:T) {
+    init {
+        println("Bagian ini Memanggil Nilai dari $input")
+    }
+}*/
+
+//Perbandingannya adalah Invariant menggunakan dataClass sedangkan Generic variant menggunakan Class yang berfungsi menjalankan fungsi/sistemnya.
